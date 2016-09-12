@@ -1,0 +1,3 @@
+INVOICE,Numbers,Sequence,1|0|1
+DETAIL_ITEM,Set,From File,0,0,C:\Users\Michael\Desktop\SanMartinMS\test\generatedData\itemList.txt
+QUANTITY,Numbers,Integer,50|1000

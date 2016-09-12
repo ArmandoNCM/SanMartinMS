@@ -1,0 +1,4 @@
+SERIAL_NUMBER,Numbers,Sequence,1|0|1
+PLACED_DATE,Time,Date,36526|42490|1|False|yyyy/mm/dd|hh:nn:ss
+CLIENT,Set,From File,0,0,C:\Users\Michael\Desktop\SanMartinMS\test\generatedData\clientList.txt
+PAYMENT_DAYS,Set,From Fixed List,0,-1,30|15|8|0

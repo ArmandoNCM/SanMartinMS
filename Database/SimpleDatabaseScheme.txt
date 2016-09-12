@@ -1,0 +1,28 @@
+Client:
+	NIT (PK)
+	Name
+	
+Address:
+	Adress (PK)
+	Client NIT (FK)
+
+Invoice:
+	Number (PK)
+	Date
+	Client NIT (FK)
+	PaymentDays
+
+Items:
+	Item Code (PK)
+	Item Description
+	Barcode
+
+Item Price:
+	Item (Combined PK-A)
+	Established Date (Combined PK-B)
+	Price
+
+Order Details:
+	Invoice Number (Combined PK-A)
+	Item Code (Combined PK-B)
+	Quantity
