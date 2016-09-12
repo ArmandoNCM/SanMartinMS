@@ -1,5 +1,0 @@
-ITEM,Set,From File,0,0,C:\Users\Michael\Desktop\SanMartinMS\test\generatedData\itemList.txt
-SET_DATE,Time,Date,36526|42490|3|False|yyyy/mm/dd|hh:nn:ss
-PRICE,Numbers,Integer,600|1000
-IVA_PERCENT,Set,From Fixed List,0,-1,5|8|16
-ACTIVE,Set,From Fixed List,0,0,N

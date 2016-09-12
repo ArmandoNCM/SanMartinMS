@@ -1,2 +1,0 @@
-NIT,Human,Social Security Number
-NAME,Human,Full Name,True|True
