@@ -4,7 +4,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 /**
  *
- * @Modifico Armando Castillo
+ * @Author Armando Castillo
  */
 public abstract class NumberToLetterConverter {
     private static final String[] UNIDADES = { "", "UN ", "DOS ", "TRES ",
@@ -177,8 +177,4 @@ public abstract class NumberToLetterConverter {
             return origin.charAt(origin.length() - position - 1) - 48;
         return 0;
     }
-    
-    public static void main(String[] args) {
-		System.out.println(convertNumberToLetter(715658.5));
-	}
 }
