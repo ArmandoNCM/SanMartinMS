@@ -23,14 +23,7 @@ public class Client {
 	 * Display Name of the Client
 	 */
 	private String name;
-
-	public Map<String, String> getDispatches() {
-		return dispatches;
-	}
-
-	public void setDispatches(Map<String, String> dispatches) {
-		this.dispatches = dispatches;
-	}
+	
 
 	public String getNit() {
 		return nit;
@@ -46,6 +39,21 @@ public class Client {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	/**
+	 * Adds a new dispatch to the client
+	 * @param displayName Display name of the dispatch
+	 * @param address Address of the dispatch
+	 */
+	public void addDispatch(String displayName, String address){
+		dispatches.put(displayName, address);
+	}
+	/**
+	 * Gets an iterator to view the display names of the existent dispatches of the client
+	 * @return Dispatches display names iterator
+	 */
+	public Iterable<String> getDispatches(){
+		return dispatches.keySet();
 	}
 
 }

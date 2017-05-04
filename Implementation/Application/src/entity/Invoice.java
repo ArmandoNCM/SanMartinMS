@@ -65,9 +65,12 @@ public class Invoice {
 	public void setPaymentDays(int paymentDays) {
 		this.paymentDays = paymentDays;
 	}
-
-	public Iterator<OrderDetail> getOrderDetailsIterator() {
-		return orderDetails.iterator();
+	/**
+	 * Get Order Details of the Invoice
+	 * @return
+	 */
+	public Iterable<OrderDetail> getOrderDetails() {
+		return orderDetails;
 	}
 
 	/**
@@ -87,7 +90,7 @@ public class Invoice {
 	 * @return IVA Tax
 	 */
 	public float getIVATotal() {
-		Iterator<OrderDetail> detailIterator = getOrderDetailsIterator();
+		Iterator<OrderDetail> detailIterator = getOrderDetails().iterator();
 		OrderDetail detail;
 		float ivaTotal = 0;
 		while (detailIterator.hasNext()) {
@@ -103,7 +106,7 @@ public class Invoice {
 	 * @return Subtotal
 	 */
 	public int getSubtotal() {
-		Iterator<OrderDetail> detailIterator = getOrderDetailsIterator();
+		Iterator<OrderDetail> detailIterator = getOrderDetails().iterator();
 		OrderDetail detail;
 		int subtotal = 0;
 		while (detailIterator.hasNext()) {
