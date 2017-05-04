@@ -67,5 +67,26 @@ public class OrderDetail {
 	public void setIvaPercent(int ivaPercent) {
 		this.ivaPercent = ivaPercent;
 	}
+	/**
+	 * Calculates the IVA tax to pay
+	 * @return IVA Tax
+	 */
+	public float getIVATotal(){
+		return ((float)quantity * ivaPercent) / 100F;
+	}
+	/**
+	 * Calculates the Subtotal without IVA tax
+	 * @return Subtotal
+	 */
+	public int getSubtotal(){
+		return quantity * unitPrice;
+	}
+	/**
+	 * Calculate Total with IVA tax
+	 * @return Total
+	 */
+	public float getTotal(){
+		return ((float) getSubtotal()) + getIVATotal();
+	}
 
 }
