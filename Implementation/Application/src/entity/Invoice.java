@@ -1,7 +1,9 @@
 package entity;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
  * This class represents an Invoice
@@ -25,7 +27,6 @@ public class Invoice {
 	/**
 	 * Number of days the client will have to make the payment
 	 * 
-	 * TODO Check if this is a relevant data piece
 	 */
 	private int paymentDays;
 	/**
@@ -65,6 +66,10 @@ public class Invoice {
 		this.paymentDays = paymentDays;
 	}
 
+	public Iterator<OrderDetail> getOrderDetailsIterator() {
+		return orderDetails.iterator();
+	}
+
 	/**
 	 * Adds an order detail belonging to one of the items in the invoice
 	 * 
@@ -76,7 +81,64 @@ public class Invoice {
 		orderDetails.add(detail);
 	}
 
-	public Collection<OrderDetail> getOrderDetails() {
-		return orderDetails;
+	/**
+	 * Calculates the IVA tax to pay
+	 * 
+	 * @return IVA Tax
+	 */
+	public float getIVATotal() {
+		Iterator<OrderDetail> detailIterator = getOrderDetailsIterator();
+		OrderDetail detail;
+		float ivaTotal = 0;
+		while (detailIterator.hasNext()) {
+			detail = detailIterator.next();
+			ivaTotal += detail.getIVATotal();
+		}
+		return ivaTotal;
 	}
+
+	/**
+	 * Calculates the Subtotal without IVA tax
+	 * 
+	 * @return Subtotal
+	 */
+	public int getSubtotal() {
+		Iterator<OrderDetail> detailIterator = getOrderDetailsIterator();
+		OrderDetail detail;
+		int subtotal = 0;
+		while (detailIterator.hasNext()) {
+			detail = detailIterator.next();
+			subtotal += detail.getSubtotal();
+		}
+		return subtotal;
+	}
+
+	/**
+	 * Calculate Total with IVA tax
+	 * 
+	 * @return Total
+	 */
+	public float getTotal() {
+		return ((float) getSubtotal()) + getIVATotal();
+	}
+
+	/**
+	 * Calculates days remaining until Invoice expiration
+	 * 
+	 * @return Number of days remaining or -1 if it's already expired
+	 */
+	public int getDaysUntilExpiration() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(placedDate);
+		calendar.add(Calendar.DAY_OF_MONTH, paymentDays);
+		Date expirationDate = calendar.getTime();
+		Date currentDate = new Date();
+		if (currentDate.before(expirationDate)) {
+			long millisecondsPerDay = 1000L * 60 * 60 * 24;
+			long millisecondsDifference = expirationDate.getTime() - currentDate.getTime();
+			return (int) (millisecondsDifference / millisecondsPerDay);
+		} else
+			return -1;
+	}
+
 }
