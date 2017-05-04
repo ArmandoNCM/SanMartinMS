@@ -23,12 +23,6 @@ public class Invoice {
 	 */
 	private Client client;
 	/**
-	 * Discount percentage applied for the sale
-	 * 
-	 * TODO Check if this actually applies
-	 */
-	private int discountPercentage;
-	/**
 	 * Number of days the client will have to make the payment
 	 * 
 	 * TODO Check if this is a relevant data piece
@@ -61,14 +55,6 @@ public class Invoice {
 
 	public void setClient(Client client) {
 		this.client = client;
-	}
-
-	public int getDiscountPercentage() {
-		return discountPercentage;
-	}
-
-	public void setDiscountPercentage(int discountPercentage) {
-		this.discountPercentage = discountPercentage;
 	}
 
 	public int getPaymentDays() {
