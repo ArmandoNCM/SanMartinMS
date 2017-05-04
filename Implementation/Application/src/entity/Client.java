@@ -55,5 +55,10 @@ public class Client {
 	public Iterable<String> getDispatches(){
 		return dispatches.keySet();
 	}
+	
+	@Override
+	public String toString() {
+		return nit + " - " + name;
+	}
 
 }

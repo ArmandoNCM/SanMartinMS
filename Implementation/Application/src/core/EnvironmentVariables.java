@@ -19,17 +19,24 @@ public class EnvironmentVariables {
 	 * Map used to store the Key, Value pairs of Environment Variables
 	 */
 	private static Map<String, String> environmentVariables = new HashMap<>();
+
 	/**
 	 * Adds a new Environment Variable
-	 * @param key Key of the Environment Variable to store
-	 * @param value Value of the Environment Variable to store 
+	 * 
+	 * @param key
+	 *            Key of the Environment Variable to store
+	 * @param value
+	 *            Value of the Environment Variable to store
 	 */
 	public static void addEnvironmentVariable(String key, String value) {
 		environmentVariables.put(key, value);
 	}
+
 	/**
-	 * Retrieves an Environment Variable 
-	 * @param key Key of the Environment Variable to retrieve
+	 * Retrieves an Environment Variable
+	 * 
+	 * @param key
+	 *            Key of the Environment Variable to retrieve
 	 * @return Value of the Environment Variable
 	 */
 	public static String getEnvironmentVariable(String key) {

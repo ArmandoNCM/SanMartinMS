@@ -1,9 +1,12 @@
 package entity;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
+
 
 /**
  * This class represents an Invoice
@@ -142,6 +145,12 @@ public class Invoice {
 			return (int) (millisecondsDifference / millisecondsPerDay);
 		} else
 			return -1;
+	}
+	
+	@Override
+	public String toString() {
+		DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault());
+		return "No. " + serialNumber + " " + format.format(placedDate);
 	}
 
 }
