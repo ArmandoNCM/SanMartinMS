@@ -90,6 +90,7 @@ public class DatabaseConnection {
 		try {
 			Statement statement = connection.createStatement();
 			int result = statement.executeUpdate(query);
+			connection.commit();
 			return result == 1;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
