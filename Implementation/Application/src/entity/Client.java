@@ -49,11 +49,19 @@ public class Client {
 		dispatches.put(displayName, address);
 	}
 	/**
-	 * Gets an iterator to view the display names of the existent dispatches of the client
+	 * Retrieve the display names of the existent dispatches of the client
 	 * @return Dispatches display names iterator
 	 */
-	public Iterable<String> getDispatches(){
+	public Iterable<String> getDispatchNames(){
 		return dispatches.keySet();
+	}
+	/**
+	 * Retrieve the full address of a dispatch
+	 * @param dispatchName Name of the dispatch whose address is to be fetched
+	 * @return Address of the dispatch
+	 */
+	public String getDispatchAddress(String dispatchName){
+		return dispatches.get(dispatchName);
 	}
 	
 	@Override
