@@ -65,7 +65,7 @@ public class OrderDetailHandler {
 	 * @param invoice
 	 *            Invoice whose details are to be persisted
 	 */
-	public static final void pushInvoiceDetails(Invoice invoice) {
+	public static final void persistInvoiceDetails(Invoice invoice) {
 		DatabaseConnection dbConnection = DatabaseConnection.getInstance();
 		String sqlInsert = SQL_INSERT;
 		for (OrderDetail orderDetail : invoice.getOrderDetails()) {
