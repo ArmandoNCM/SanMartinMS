@@ -118,6 +118,8 @@ public class DatabaseConnection {
 	 * @return Enquoted String
 	 */
 	public static final String enquoteColumn(String columnValue) {
+		if (columnValue == null)
+			return null;
 		return QUOTATION_SYMBOL + columnValue + QUOTATION_SYMBOL;
 	}
 
