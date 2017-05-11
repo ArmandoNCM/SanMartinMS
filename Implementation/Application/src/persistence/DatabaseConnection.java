@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * This class implements a Singleton pattern for the DataBase connection It
@@ -18,6 +21,10 @@ public class DatabaseConnection {
 	 * Used by the SQL syntax to enquote string values
 	 */
 	private static final char QUOTATION_SYMBOL = '\'';
+	/**
+	 * Date format used to persist Date objects into DATETIME MySQL Type
+	 */
+	private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	/**
 	 * Database User
 	 * 
@@ -123,4 +130,14 @@ public class DatabaseConnection {
 		return QUOTATION_SYMBOL + columnValue + QUOTATION_SYMBOL;
 	}
 
+	/**
+	 * Format Date into String to insert in Database
+	 * 
+	 * @param date
+	 *            Date to be formated
+	 * @return Date formated as String
+	 */
+	public static final String formatDate(Date date) {
+		return QUOTATION_SYMBOL + DATE_FORMAT.format(date) + QUOTATION_SYMBOL;
+	}
 }
