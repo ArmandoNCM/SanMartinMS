@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
 
-
 /**
  * This class represents an Invoice
  * 
@@ -68,23 +67,13 @@ public class Invoice {
 	public void setPaymentDays(int paymentDays) {
 		this.paymentDays = paymentDays;
 	}
-	/**
-	 * Get Order Details of the Invoice
-	 * @return
-	 */
-	public Iterable<OrderDetail> getOrderDetails() {
+
+	public Collection<OrderDetail> getOrderDetails() {
 		return orderDetails;
 	}
 
-	/**
-	 * Adds an order detail belonging to one of the items in the invoice
-	 * 
-	 * @param detail
-	 *            Order Detail of an Item in this Invoice
-	 */
-	public void addOrderDetail(OrderDetail detail) {
-		detail.setInvoice(this);
-		orderDetails.add(detail);
+	public void setOrderDetails(Collection<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 
 	/**
@@ -146,7 +135,7 @@ public class Invoice {
 		} else
 			return -1;
 	}
-	
+
 	@Override
 	public String toString() {
 		DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT, Locale.getDefault());

@@ -2,6 +2,8 @@ package persistence.handlers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import core.ItemsCache;
 import entity.Invoice;
@@ -30,15 +32,16 @@ public class OrderDetailHandler {
 	 * 
 	 * @param invoice
 	 *            Invoice whose details are to be fetched
-	 * @return True if all details of the Invoice were correctly loaded
+	 * @return Collection of Invoice Details
 	 */
-	public static final boolean fetchInvoiceDetails(Invoice invoice) {
+	public static final Collection<OrderDetail> fetchInvoiceDetails(Invoice invoice) {
 		String invoiceNumber = invoice.getSerialNumber();
 		DatabaseConnection dbConnection = DatabaseConnection.getInstance();
 		String sqlQuery = SQL_QUERY + DatabaseConnection.enquoteColumn(invoiceNumber);
 		ResultSet result = dbConnection.queryDatabase(sqlQuery);
 		try {
 			OrderDetail orderDetail;
+			Collection<OrderDetail> details = new ArrayList<>(); 
 			while (result.next()) {
 				orderDetail = new OrderDetail();
 				orderDetail.setInvoice(invoice);
@@ -46,14 +49,14 @@ public class OrderDetailHandler {
 				orderDetail.setQuantity(result.getInt(QUANTITY));
 				orderDetail.setUnitPrice(result.getInt(UNIT_PRICE));
 				orderDetail.setIvaPercent(result.getInt(IVA_PERCENT));
-				invoice.addOrderDetail(orderDetail);
+				details.add(orderDetail);
 			}
-			return true;
+			return details;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
+		return null;
 	}
 
 	/**

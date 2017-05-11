@@ -1,5 +1,6 @@
 package core;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +56,7 @@ public class ItemsCache {
 	 * Gets all the cached items
 	 * @return Items in Cache
 	 */
-	public Iterable<Item> getItems() {
+	public Collection<Item> getItems() {
 		return items.values();
 	}
 

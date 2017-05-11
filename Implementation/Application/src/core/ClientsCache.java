@@ -1,5 +1,6 @@
 package core;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +67,7 @@ public class ClientsCache {
 	 * 
 	 * @return Collection of clients
 	 */
-	public Iterable<Client> getClients() {
+	public Collection<Client> getClients() {
 		return clients.values();
 	}
 

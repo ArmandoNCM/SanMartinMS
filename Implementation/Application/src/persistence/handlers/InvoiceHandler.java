@@ -63,7 +63,7 @@ public class InvoiceHandler {
 	 *            Client whose invoices are to be fetched
 	 * @return Invoices of the client
 	 */
-	public static final Iterable<Invoice> fetchInvoices(Client client) {
+	public static final Collection<Invoice> fetchInvoices(Client client) {
 		DatabaseConnection connection = DatabaseConnection.getInstance();
 		String query = SQL_QUERY_MULTIPLE_INVOICE;
 		query += DatabaseConnection.enquoteColumn(client.getNit());

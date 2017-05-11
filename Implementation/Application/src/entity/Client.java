@@ -1,5 +1,6 @@
 package entity;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -52,7 +53,7 @@ public class Client {
 	 * Retrieve the display names of the existent dispatches of the client
 	 * @return Dispatches display names iterator
 	 */
-	public Iterable<String> getDispatchNames(){
+	public Collection<String> getDispatchNames(){
 		return dispatches.keySet();
 	}
 	/**
