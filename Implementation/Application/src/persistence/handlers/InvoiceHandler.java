@@ -2,8 +2,11 @@ package persistence.handlers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import core.ClientsCache;
+import entity.Client;
 import entity.Invoice;
 import persistence.DatabaseConnection;
 
@@ -37,7 +40,7 @@ public class InvoiceHandler {
 		query += DatabaseConnection.enquoteColumn(invoiceNumber);
 		ResultSet result = connection.queryDatabase(query);
 		try {
-			if(result.next()){
+			if (result.next()) {
 				ClientsCache clientsCache = ClientsCache.getInstance();
 				Invoice invoice = new Invoice();
 				invoice.setSerialNumber(invoiceNumber);
@@ -52,6 +55,36 @@ public class InvoiceHandler {
 		}
 		return null;
 	}
-	
-	
+
+	/**
+	 * Fetches all the invoices belonging to a client
+	 * 
+	 * @param client
+	 *            Client whose invoices are to be fetched
+	 * @return Invoices of the client
+	 */
+	public static final Iterable<Invoice> fetchInvoices(Client client) {
+		DatabaseConnection connection = DatabaseConnection.getInstance();
+		String query = SQL_QUERY_MULTIPLE_INVOICE;
+		query += DatabaseConnection.enquoteColumn(client.getNit());
+		ResultSet result = connection.queryDatabase(query);
+		try {
+			Invoice invoice;
+			Collection<Invoice> invoices = new ArrayList<>();
+			while (result.next()) {
+				invoice = new Invoice();
+				invoice.setSerialNumber(result.getString(SERIAL_NUMBER));
+				invoice.setClient(client);
+				invoice.setPaymentDays(result.getInt(PAYMENT_DAYS));
+				invoice.setPlacedDate(result.getDate(PLACED_DATE));
+				invoices.add(invoice);
+			}
+			return invoices;
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }
